@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  llama-rpc-server:
+    build: .
+    image: llama-rpc-server:latest
+    environment:
+      - RPC_SERVER_ADDR=192.168.1.108:50052
+    volumes:
+      - ./client.ovpn:/vpn/client.ovpn:ro
+    network_mode: bridge
+    restart: unless-stopped
+    
+    ports:
+      - "50052:50052"
